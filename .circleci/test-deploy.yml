@@ -43,58 +43,58 @@ workflows:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Run any integration tests defined within the `jobs` key.
-      - validate-command-sequence:
-          context: CPE_ORBS_AWS
-          filters: *filters
-      - validate-terraform-install:
-          filters: *filters
-      - validate-terraform-install-old:
-          filters: *filters
-      - terraform/init:
-          context: CPE_ORBS_AWS
-          filters: *filters
-          checkout: true
-          path: "src/infra"
-          requires:
-            - validate-command-sequence
-            - validate-terraform-install
-      - terraform/fmt:
-          context: CPE_ORBS_AWS
-          filters: *filters
-          checkout: true
-          path: "src/infra"
-          requires:
-            - terraform/init
-      - terraform/validate:
-          context: CPE_ORBS_AWS
-          checkout: true
-          path: "src/infra"
-          requires:
-            - terraform/fmt
-      - terraform/plan:
-          context: CPE_ORBS_AWS
-          filters: *filters
-          checkout: true
-          path: "src/infra"
-          workspace: "orb-testing"
-          requires:
-            - terraform/validate
-      - terraform/apply:
-          context: CPE_ORBS_AWS
-          filters: *filters
-          checkout: true
-          path: "src/infra"
-          workspace: "orb-testing"
-          requires:
-            - terraform/plan
-      - terraform/destroy:
-          context: CPE_ORBS_AWS
-          filters: *filters
-          checkout: true
-          path: "src/infra"
-          workspace: "orb-testing"
-          requires:
-            - terraform/apply
+      # - validate-command-sequence:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      # - validate-terraform-install:
+      #     filters: *filters
+      # - validate-terraform-install-old:
+      #     filters: *filters
+      # - terraform/init:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      #     checkout: true
+      #     path: "src/infra"
+      #     requires:
+      #       - validate-command-sequence
+      #       - validate-terraform-install
+      # - terraform/fmt:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      #     checkout: true
+      #     path: "src/infra"
+      #     requires:
+      #       - terraform/init
+      # - terraform/validate:
+      #     context: CPE_ORBS_AWS
+      #     checkout: true
+      #     path: "src/infra"
+      #     requires:
+      #       - terraform/fmt
+      # - terraform/plan:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      #     checkout: true
+      #     path: "src/infra"
+      #     workspace: "orb-testing"
+      #     requires:
+      #       - terraform/validate
+      # - terraform/apply:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      #     checkout: true
+      #     path: "src/infra"
+      #     workspace: "orb-testing"
+      #     requires:
+      #       - terraform/plan
+      # - terraform/destroy:
+      #     context: CPE_ORBS_AWS
+      #     filters: *filters
+      #     checkout: true
+      #     path: "src/infra"
+      #     workspace: "orb-testing"
+      #     requires:
+      #       - terraform/apply
       - orb-tools/pack:
           filters: *filters
       - orb-tools/publish:
@@ -103,13 +103,13 @@ workflows:
           pub-type: production
           requires:
             - orb-tools/pack
-            - validate-command-sequence
-            - terraform/init
-            - terraform/fmt
-            - terraform/validate
-            - terraform/plan
-            - terraform/apply
-            - terraform/destroy
+            # - validate-command-sequence
+            # - terraform/init
+            # - terraform/fmt
+            # - terraform/validate
+            # - terraform/plan
+            # - terraform/apply
+            # - terraform/destroy
           context: orb-publisher
           github-token: GHI_TOKEN
           filters:
