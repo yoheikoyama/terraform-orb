@@ -110,7 +110,7 @@ workflows:
             # - terraform/plan
             # - terraform/apply
             # - terraform/destroy
-          context: orb-publisher
+          context: orb-publishing
           github-token: GHI_TOKEN
           filters:
             branches:
