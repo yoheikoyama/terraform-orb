@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  terraform: circleci/terraform@dev:<<pipeline.git.revision>>
+  terraform: yoheikoyama/terraform@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@11.1
   shellcheck: circleci/shellcheck@2.0
 filters: &filters
@@ -98,7 +98,7 @@ workflows:
       - orb-tools/pack:
           filters: *filters
       - orb-tools/publish:
-          orb-name: circleci/terraform
+          orb-name: yoheikoyama/terraform
           vcs-type: << pipeline.project.type >>
           pub-type: production
           requires:
